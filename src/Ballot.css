@@ -1,8 +1,5 @@
-.App {
-  text-align: center;
-}
 
-.Position {
+.Ballot {
 	padding: 7vh max(50px, 10vw);
 	margin: 0 auto;
 	max-width: min(500px, 80vw);

@@ -1,27 +1,36 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import Position from './Position';
+import Ballot from './Ballot';
+import { Helmet } from 'react-helmet';
+
 
 function App() {
+	const testBallotRep = {
+	    "name" : "test ballot name",
+	    "positionReps": [
+	        {
+	            "name" : "position 1 name",
+	            "candidates": ["test candidate 1", "candidate 2"]
+	        },
+	    ],
+	};
+	
+	const testPosition =
+	    <Position
+	        candidates={["testing 1 2 testing testing",2,3]}
+	        position='test'
+	        handler={(a, b, c) => {console.log([a, b, c])}}
+	        />;
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload. Testing 
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+	    <div className="App">
+	    	<Helmet>
+	            <title>{ "Ranked Pairs" } </title>
+	        </Helmet>
+	        <Ballot ballotRep={testBallotRep} />
+		</div>
+	);
 }
 
 export default App;

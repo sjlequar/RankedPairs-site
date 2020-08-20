@@ -39,9 +39,14 @@ export default function Position(props) {
 		<Candidate
 			candidate={candidate}
 			// makes a handler to elevate state to ballot
-			handler={((pref, candidate) => {
-				props.handler(pref, candidate, props.position);
-			})}
+			handler={(pref, candidate) => {
+				props.handler({
+					"pref": pref, 
+					"candidate": candidate, 
+					"position": props.position,
+					});
+					
+			}}
 		/>
 	);
 	
