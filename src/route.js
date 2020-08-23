@@ -3,8 +3,11 @@
 <Router>
 	<Route path='/'>
 		Home
-		Ballot
+		Ballots
+			switch on ballot id?
 		Login
 		Dash
 		Admin
+			Ballot
+				switch on id?
 
