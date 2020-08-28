@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './formatting/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import './formatting/Ballot.css';
+import './formatting/general.css';
 import { BrowserRouter } from 'react-router-dom';
 import store from './app/store';
 import { Provider } from 'react-redux';

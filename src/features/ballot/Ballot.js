@@ -89,17 +89,27 @@ export default class Ballot extends React.Component {
 
 	render() {
 		if (this.state.loading) {
-			return (<Typography variant='h4'> loading... </Typography>);
+			return (
+				<div className="Ballot">
+			<Typography variant='h4'> loading... </Typography>
+				</div>
+			);
 		};
 		if (!this.state.valid){
-			return (<Typography variant='h4'> Invalid Ballot URL </Typography>);
+			return (
+				<div className="Ballot">
+			<Typography variant='h4'> Invalid Ballot URL </Typography>
+				</div>
+			);
 		};
 
 		if (this.state.requireLogin){
 			return (
+				<div className="Ballot">
 				<Typography variant='h4'> 
 				You must be logged in to access this ballot. 
 				</Typography>
+				</div>
 			);
 		};
 		return (
