@@ -1,36 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './formatting/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Position from './Position';
-import Ballot from './Ballot';
-import './Ballot.css';
-import { Helmet } from 'react-helmet';
+import './formatting/Ballot.css';
 import { BrowserRouter } from 'react-router-dom';
-
-const testBallotRep = {
-	"name" : "test ballot name", 
-	"positionReps": [
-		{
-			"name" : "position 1 name",
-			"candidates": ["test candidate 1", "candidate 2"]
-		},
-	],
-};
-
-const testPosition = 
-	<Position 
-		candidates={["testing 1 2 testing testing",2,3]}
-		position='test'
-		handler={(a, b, c) => {console.log([a, b, c])}}
-		/>;
+import store from './app/store';
+import { Provider } from 'react-redux';
 
 
 ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<App />
+			<Provider store={store}>
+				<App />
+			</Provider>
 		</BrowserRouter>
 	</React.StrictMode>,
   document.getElementById('root')
