@@ -1,1 +1,1 @@
-This is the react code for the website voterankedpairs.com
+This is the code for the website [VoteRankedPairs](https://voterankedpairs.com)
