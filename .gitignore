@@ -1,3 +1,5 @@
 build
 test-redux
 node_modules
+.README.md
+**/*.swp
