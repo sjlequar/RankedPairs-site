@@ -5,7 +5,7 @@ import Ballot from '../ballot/Ballot';
 
 const exampleBallotRep = {
     "name" : "How This Works",
-	"subtitle" : "This Ballot will walk you through how to vote using "+
+	"subtitle" : "This Ballot will walk you through voting using "+
 				 "VoteRankedPairs.", 
     "positionReps": [
         {
