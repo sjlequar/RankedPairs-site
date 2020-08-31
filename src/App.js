@@ -2,32 +2,24 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route, useParams, useRouteMatch } from "react-router-dom";
 import { Paper } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider, responsiveFontSizes } 
+	from '@material-ui/core/styles';
 
 import Home from './features/content/Home';
 import ExampleBallot from './features/content/ExampleBallot';
 import Ballot from './features/ballot/Ballot';
+import Theme from './formatting/Theme.js';
 
 const APIURL = "https://py9e27de59.execute-api.us-west-1.amazonaws.com/test/request"
 
-
-const testBallotRep = {
-    "name" : "test ballot name",
-    "positionReps": [
-        {
-            "name" : "position 1 name",
-            "candidates": ["test candidate 1", "candidate 2"]
-        },
-		{ 
-			"name" : "second position name", 
-			"candidates": ["test 1", "test2", "third", "no"]
-		},
-    ],
-};
-
+let theme = createMuiTheme();
+theme = responsiveFontSizes(theme);
+	
 
 function App() {
 	return (
-	    <div className="App">
+		<div className="App">
+	    <ThemeProvider theme={Theme}>
 	    	<Helmet>
 	            <title>{ "Ranked Pairs" } </title>
 	        </Helmet>
@@ -46,10 +38,11 @@ function App() {
 				</Route>
 				<Route path="/test">
 		<Paper variant='elevation' elevation='4' className="BallotWrapper">
-					<Ballot ballotRep={testBallotRep} />
+				<h1> This is a test. </h1>
 		</Paper>
 				</Route>
 			</Switch>
+		</ThemeProvider>
 		</div>
 	);
 }
