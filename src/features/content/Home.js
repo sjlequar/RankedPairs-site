@@ -34,7 +34,6 @@ function Home({type}) {
 		</Typography>
 		</div>
 		);
-		break;
 	
 	case "ballots":
 		return (
@@ -46,12 +45,11 @@ function Home({type}) {
 
 
 		);
-		break;
-
+	default:
+		return (<body> Page not found </body>);
 
 	};
 
-	return (<body> Page not found </body>);
 }
 
 

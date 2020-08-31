@@ -3,27 +3,30 @@ import { Paper } from '@material-ui/core';
 import Ballot from '../ballot/Ballot';
 
 
-const testBallotRep = {
+const exampleBallotRep = {
     "name" : "How This Works",
-	"subtitle" : "This is what the Ballot looks like. You express " + 
-				 "your preference with the sliders under each Candidate.", 
+	"subtitle" : "This Ballot will walk you through how to vote using "+
+				 "VoteRankedPairs.", 
     "positionReps": [
         {
             "name" : "This is the name of a Position",
             "candidates": [
-							"and these are the names of the Candidates", 
-							"that you can rank in your vote", 
-							"(by using the sliders underneath each one)",
+							"and these are the names of the Candidates...", 
+							"...that you can rank in your vote", 
+							"(using the sliders underneath each one, "+
+							"try it out here)",
 						  ]
         },
 		{
-			"name": "An Example:", 
-			"subtitle": "Suppose you had the following position on your \
-						 ballot. You could vote (rank the candidates) like \
-						 this:"
+			"name": "How Ranked Pairs Voting Works:", 
+			"subtitle": "Suppose you had the following position on your " + 
+						 "ballot. You could cast a vote (by ranking the " +
+						 "candidates) "+
+						 "like this:"
 		},
         {
             "name" : "An Important Position",
+			"disabled" : true, 
             "candidates": [
 							"Your Favorite Candidate", 
 							"An Okay Candidate", 
@@ -33,11 +36,12 @@ const testBallotRep = {
         },
 		{
 			"name": "", 
-			"subtitle": "This ranking is the same as the following ranking:"
+			"subtitle": "This ranking is equivalent to the following ranking:"
 		},
 
 		{ 
 			"name" : "The Same Important Position",
+			"disabled" : true,
             "candidates": [
 							"Your Favorite Candidate", 
 							"An Okay Candidate", 
@@ -46,12 +50,18 @@ const testBallotRep = {
 						  ]
 		},
 		{
-			"name" : "Only the relative preference matters",
+			"name" : "Only the Relative Preference Matters in Ranked Pairs",
 			"subtitle" :
-			"In both votes, Favorite is ranked higher than the Okays, which \
-			are tied, which are both ranked higher than Bad.",
+			"In both votes, Favorite is ranked higher than the Okays, which " +
+			"are tied, which are both ranked higher than Bad. The exact value "+
+			"does not matter for this election method. "+
+			"If you do not " +
+			"express a preference for a candidate (leaving the slider at zero "+
+			"or in the red part), this means you prefer that candidate or "+
+			"candidates less than any other candidate you ranked (gave a non-"+
+			"zero preference for).",
 			"candidates" : [
-							"Rank Your Understanding", 
+							"Rate Your Understanding", 
 						   ]
 		},
     ],
@@ -65,7 +75,7 @@ const oldPrefs = {
 		"A Bad Candidate" : 2, 
 	},
 	"The Same Important Position" : {
-		"Your Favorite Candidate" : 3, 
+		"Your Favorite Candidate" : 2, 
 		"An Okay Candidate" : 1, 
 		"An Equally Okay Candidate" : 1, 
 		"A Bad Candidate" : 0, 
@@ -74,8 +84,8 @@ const oldPrefs = {
 
 function ExampleBallot() {
 	return (
-		<Paper elevation='5' className="BallotWrapper">
-                    <Ballot ballotRep={testBallotRep} oldPrefs={oldPrefs} />
+		<Paper elevation={5} className="BallotWrapper">
+                    <Ballot ballotRep={exampleBallotRep} oldPrefs={oldPrefs} />
         </Paper>
 	);
 }

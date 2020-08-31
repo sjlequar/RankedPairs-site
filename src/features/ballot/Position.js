@@ -1,6 +1,6 @@
 import React from 'react';
-import { Slider, Typography, Paper } from '@material-ui/core';
-
+import { Slider, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 // props contains candidate and handler
 function Candidate(props) {
@@ -15,6 +15,11 @@ function Candidate(props) {
 	const handlePrefChange = (event, newPref) => {
 		props.handler(newPref, props.candidate);
 	};
+	const classes = makeStyles({
+		track : {
+			height: 2
+		}
+	})();
 
 	return (
 		<div className="Candidate">
@@ -22,8 +27,11 @@ function Candidate(props) {
 			{props.candidate}
 			</Typography>
 			<Slider className="Candidate-slider"
+				classes = {{
+					track: classes.track,
+				}}
+				disabled={props.disabled}
 				value={pref}
-				height={4}
 				min={0}
 				step={1}
 				max={10}
@@ -42,6 +50,7 @@ export default function Position(props) {
 		<Candidate
 			candidate={candidate}
 			key={candidate}
+			disabled={("disabled" in props) ? props.disabled : false}
 			pref={(props.position in props.oldPrefs && 
 				   candidate in props.oldPrefs[props.position]) ? 
 				  props.oldPrefs[props.position][candidate] : 0}

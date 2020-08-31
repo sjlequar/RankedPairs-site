@@ -1,7 +1,6 @@
 import React from 'react'; 
 import { Typography, Button } from '@material-ui/core';
 import Position from './Position.js';
-import { Paper } from '@material-ui/core';
 
 // passed into this is the ballotRep, which stores the list of positions, 
 // the list of candidates for each position, and the ballot name. If we want
@@ -49,8 +48,11 @@ export default class Ballot extends React.Component {
 
 	getBallotByID(ballot_id) {
 		if (this.props.ballotRep){
+			console.log("valid Ballot");
+			console.log(this.state);
 			this.setState({valid: true});
 			this.setState({loading: false});
+			console.log(this.state);
 			return;
 		}
 		if (! this.state.ballotRep){
@@ -85,6 +87,8 @@ export default class Ballot extends React.Component {
 				position={positionRep.name}
 				subtitle={("subtitle" in positionRep) ? 
 							positionRep.subtitle : ""}
+				disabled={("disabled" in positionRep) ?
+						   positionRep.disabled : false}
 				key={positionRep.name}
 				candidates={"candidates" in positionRep ? 
 							positionRep.candidates : []}
@@ -92,6 +96,14 @@ export default class Ballot extends React.Component {
 				//handler={(pr, c, po) => this.handler(pr, c, po)}
 			/>
 		);
+	}
+	
+	shouldComponentUpdate(nextProps, nextState) {
+		console.log("comparing");
+		console.log(this.state)
+		return this.state.loading ||
+			   this.state.preferences === {} ||
+			   !(this.state.preferences === nextState.preferences);
 	}
 
 	render() {
