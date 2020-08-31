@@ -1,6 +1,7 @@
 import React from 'react'; 
 import { Typography, Button } from '@material-ui/core';
 import Position from './Position.js';
+import { Paper } from '@material-ui/core';
 
 // passed into this is the ballotRep, which stores the list of positions, 
 // the list of candidates for each position, and the ballot name. If we want
@@ -17,7 +18,8 @@ export default class Ballot extends React.Component {
 			valid: false,
 			requireLogin: false,
 			ballotRep: this.props.ballotRep,
-			preferences: {}
+			oldPrefs: "oldPrefs" in this.props ? this.props.oldPrefs : {}, 
+			preferences: {},
 		};
 		console.log(this.state);
 		this.boundHandler = this.handler.bind(this);
@@ -47,6 +49,7 @@ export default class Ballot extends React.Component {
 
 	getBallotByID(ballot_id) {
 		if (this.props.ballotRep){
+			this.setState({valid: true});
 			this.setState({loading: false});
 			return;
 		}
@@ -78,9 +81,13 @@ export default class Ballot extends React.Component {
 	positionRepToPosition (positionRep) {
 		return (
 			<Position
+				oldPrefs={this.state.oldPrefs}
 				position={positionRep.name}
+				subtitle={("subtitle" in positionRep) ? 
+							positionRep.subtitle : ""}
 				key={positionRep.name}
-				candidates={positionRep.candidates}
+				candidates={"candidates" in positionRep ? 
+							positionRep.candidates : []}
 				handler={(e) => this.boundHandler(e)}
 				//handler={(pr, c, po) => this.handler(pr, c, po)}
 			/>
@@ -94,16 +101,15 @@ export default class Ballot extends React.Component {
 			<Typography variant='h4'> loading... </Typography>
 				</div>
 			);
-		};
-		if (!this.state.valid){
+		}
+		else if (!this.state.valid){
 			return (
 				<div className="Ballot">
 			<Typography variant='h4'> Invalid Ballot URL </Typography>
 				</div>
 			);
-		};
-
-		if (this.state.requireLogin){
+		} 
+		else if (this.state.requireLogin){
 			return (
 				<div className="Ballot">
 				<Typography variant='h4'> 
@@ -117,6 +123,13 @@ export default class Ballot extends React.Component {
 				<Typography variant='h2' gutterBottom>
 				{this.state.ballotRep.name}
 				</Typography>
+				{("subtitle" in this.state.ballotRep) ? (
+					<Typography variant='h5' gutterBottom>
+					{this.state.ballotRep.subtitle}
+					</Typography>
+					)
+					: <div />
+				}
 				{this.state.ballotRep.positionReps.map(this.positionRepToPosition.bind(this))}
 				<Button className="Ballot-submit" /> 
 			</div>

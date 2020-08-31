@@ -24,12 +24,12 @@ function Home({type}) {
 		</p>
 		<p>
 		If you're new here, check out 
-		the <Link to="/ballots/">Ballots</Link> page.
+		the <Link to="/ballots/example_ballot">How-To Ballot</Link>.
 		Alternatively, <Link to="/login/">log in</Link>.
 		</p>
 		<p>
-		This was created by Simon Lequar for use in Dabney Hovse's elections 
-		during the summer of 2020. 
+		This website was created by Simon Lequar for use in Dabney Hovse's  
+		elections during the summer of 2020. 
 		</p>
 		</Typography>
 		</div>
